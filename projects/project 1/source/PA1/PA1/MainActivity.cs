@@ -1,13 +1,14 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using System.Collections.Generic;
 
 namespace PA1
 {
     [Activity(Label = "PA1", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        //int count = 1;
+        Stack<double> calcStack = new Stack<double>();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -58,7 +59,40 @@ namespace PA1
 
         private void Enter_Click(object sender, System.EventArgs e)
         {
-            
+            double a = 0;
+            double b = 0;
+            double result = 0.0;
+            TextView output = FindViewById<TextView>(Resource.Id.textView1);
+
+            if (double.TryParse(output.Text, out result) == false)
+            {
+                //must be an operation
+                a = calcStack.Pop();
+                b = calcStack.Pop();
+                if (output.Text == "+")
+                {
+                    output.Text = (a + b).ToString();
+                }
+                else if (output.Text == "-")
+                {
+                    output.Text = (b - a).ToString();
+                }
+                else if (output.Text == "*")
+                {
+                    output.Text = (a * b).ToString();
+                }
+                else if (output.Text == "/")
+                {
+                    output.Text = (b / a).ToString();
+                }
+            }
+            else
+            {
+                //must be a number
+                calcStack.Push(System.Convert.ToDouble(output.Text));
+                TextView output2 = FindViewById<TextView>(Resource.Id.textView1);
+                output.Text = "";
+            }
         }
 
         private void Reset_Text(object sender, System.EventArgs e)
@@ -72,7 +106,6 @@ namespace PA1
             Button someButton = sender as Button;
             if(someButton != null)
             {
-
                 TextView output = FindViewById<TextView>(Resource.Id.textView1);
                 output.Text += someButton.Text;
             }
