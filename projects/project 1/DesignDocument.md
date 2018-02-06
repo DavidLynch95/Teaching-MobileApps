@@ -1,8 +1,8 @@
 # APPLICATION NAME
-Complete description and overview.  This is where you describe in a brief, yet clear and concise, manner what your product should do and how you expect it should be used.  Why did you write this application?  What purpose does it serve?  It's okay if the only purpose is to meet the homework requirement (but try to move bedyond just that - be creative!).
+For project 1, I created a simple postfix calculator purely to meet the homework requirement. However, in another sense, it has also served to make me feel a sort of "level-up" in terms of programming, having made something that I can actually run on my phone and send to my friends. It won't be useful to anyone I know, but it's certianly a point of pride in terms of making something functional.
 
 ## System Design 
-This is where you specify all of the system's requirements.  This section should accurately portray the complete operation of your application.  Provide scenarios, use cases, system requirements, and diagrams/screenshots of the system.
+My application was created for Android OS 7.1 or higher using a Nexus 6 emulator. Any recent Android device will run it no problem. Its use is fairly limited, as it can only handle two numbers at a time, and there isn't much demand for postfix calculators out in the world, but it uses less than 50 MB of RAM to run.
 
 ## Usage
-This is where you explain how to use your application
+To use my application, you enter a number or operation and then hit the enter key to store it. It can only work if you hit a number, then enter, then another number, then enter again, and then the operation. It will only work with two numbers, however the numbers can be as big or as small as you want. Any number that is the result of an operation can also be stored by hitting the enter key again after the result has been calculated and displayed to the screen. 
