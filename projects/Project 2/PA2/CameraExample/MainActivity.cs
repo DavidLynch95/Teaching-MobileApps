@@ -65,14 +65,15 @@ namespace CameraExample
 
         private void TakePicture(object sender, System.EventArgs e)
         {
-            SetContentView(Resource.Layout.view2);
-            //Intent intent = new Intent(MediaStore.ActionImageCapture);
-            //_file = new Java.IO.File(_dir, string.Format("myPhoto_{0}.jpg", System.Guid.NewGuid()));
-            ////android.support.v4.content.FileProvider
-            ////getUriForFile(getContext(), "com.mydomain.fileprovider", newFile);
-            ////FileProvider.GetUriForFile
+            Intent intent = new Intent(MediaStore.ActionImageCapture);
+            _file = new Java.IO.File(_dir, string.Format("myPhoto_{0}.jpg", System.Guid.NewGuid()));
+            //android.support.v4.content.FileProvider
+            //getUriForFile(getContext(), "com.mydomain.fileprovider", newFile);
+            //FileProvider.GetUriForFile
+
+            //The line is a problem line for Android 7+ development
             //intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(_file));
-            //StartActivityForResult(intent, 0);
+            StartActivityForResult(intent, 0);
         }
 
         // <summary>
@@ -85,12 +86,16 @@ namespace CameraExample
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
+            //change view to the second layout where editing takes place
+            SetContentView(Resource.Layout.view2);
+
             //Make image available in the gallery
+            /*
             Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
             var contentUri = Android.Net.Uri.FromFile(_file);
             mediaScanIntent.SetData(contentUri);
             SendBroadcast(mediaScanIntent);
-
+            */
 
             // Display in ImageView. We will resize the bitmap to fit the display.
             // Loading the full sized image will consume too much memory
@@ -98,13 +103,19 @@ namespace CameraExample
             ImageView imageView = FindViewById<ImageView>(Resource.Id.takenPictureImageView);
             int height = Resources.DisplayMetrics.HeightPixels;
             int width = imageView.Height;
-            Android.Graphics.Bitmap bitmap = _file.Path.LoadAndResizeBitmap(width, height);
-            Android.Graphics.Bitmap copyBitmap = bitmap.Copy(Android.Graphics.Bitmap.Config.Argb8888, true);
-            for(int i = 0; i < copyBitmap.Width; i++)
+
+            //AC: workaround for not passing actual files
+            Android.Graphics.Bitmap bitmap = (Android.Graphics.Bitmap)data.Extras.Get("data");
+            Android.Graphics.Bitmap copyBitmap =
+                bitmap.Copy(Android.Graphics.Bitmap.Config.Argb8888, true);
+
+            FindViewById<Button>(Resource.Id.RemoveRed).Click += RemoveRedButton;
+            //this code removes all red from a picture
+            for (int i = 0; i < bitmap.Width; i++)
             {
-                for(int j = 0; j < copyBitmap.Height; j++)
+                for (int j = 0; j < bitmap.Height; j++)
                 {
-                    int p = copyBitmap.GetPixel(i, j);
+                    int p = bitmap.GetPixel(i, j);
                     Android.Graphics.Color c = new Android.Graphics.Color(p);
                     c.R = 0;
                     copyBitmap.SetPixel(i, j, c);
@@ -121,6 +132,10 @@ namespace CameraExample
             // Dispose of the Java side bitmap.
             System.GC.Collect();
         }
+
+        private void RemoveRedButton (object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
-

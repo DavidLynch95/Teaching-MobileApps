@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:rowCount="3"
     android:columnCount="3">
-    <TextView
-        android:id="@+id/textView1"
-        android:textSize="48dp"
-        android:background="#8C4ACE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="3" />
     <Button
         android:text="Negate Red"
         android:id="@+id/NegRed"
@@ -42,7 +35,8 @@
     <Button
         android:text="Add Noise"
         android:id="@+id/AddNoise"
-        android:backgroundTint="#ff99b4d1" />
+        android:backgroundTint="#ff99b4d1"
+        android:layout_marginRight="0.0dp" />
     <Button
         android:text="High Contrast"
         android:id="@+id/HighContrast"

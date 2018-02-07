@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("PA2.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("CameraExample.Resource", IsApplication=true)]
 
-namespace PA2
+namespace CameraExample
 {
 	
 	
@@ -44,8 +44,38 @@ namespace PA2
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			// aapt resource value: 0x7f060009
+			public const int AddNoise = 2131099657;
+			
+			// aapt resource value: 0x7f060008
+			public const int Grayscale = 2131099656;
+			
+			// aapt resource value: 0x7f06000a
+			public const int HighContrast = 2131099658;
+			
+			// aapt resource value: 0x7f060003
+			public const int NegBlue = 2131099651;
+			
+			// aapt resource value: 0x7f060004
+			public const int NegGreen = 2131099652;
+			
+			// aapt resource value: 0x7f060002
+			public const int NegRed = 2131099650;
+			
+			// aapt resource value: 0x7f060006
+			public const int RemoveBlue = 2131099654;
+			
+			// aapt resource value: 0x7f060007
+			public const int RemoveGreen = 2131099655;
+			
+			// aapt resource value: 0x7f060005
+			public const int RemoveRed = 2131099653;
+			
+			// aapt resource value: 0x7f060000
+			public const int launchCameraButton = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int takenPictureImageView = 2131099649;
 			
 			static Id()
 			{
@@ -62,6 +92,9 @@ namespace PA2
 			
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int view2 = 2130903041;
 			
 			static Layout()
 			{
@@ -92,11 +125,11 @@ namespace PA2
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int app_name = 2131034113;
 			
-			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int hello = 2131034112;
 			
 			static String()
 			{
@@ -104,6 +137,22 @@ namespace PA2
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Xml
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int file_paths = 2130968576;
+			
+			static Xml()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Xml()
 			{
 			}
 		}
