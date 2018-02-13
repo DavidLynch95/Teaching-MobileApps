@@ -1,44 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:rowCount="3"
-    android:columnCount="3">
-    <Button
-        android:text="Negate Red"
-        android:id="@+id/NegRed"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Negate Blue"
-        android:id="@+id/NegBlue"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Negate Green"
-        android:id="@+id/NegGreen"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Remove Red"
-        android:id="@+id/RemoveRed"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Remove Blue"
-        android:id="@+id/RemoveBlue"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Remove Green"
-        android:id="@+id/RemoveGreen"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Grayscale"
-        android:id="@+id/Grayscale"
-        android:backgroundTint="#ff99b4d1" />
-    <Button
-        android:text="Add Noise"
-        android:id="@+id/AddNoise"
-        android:backgroundTint="#ff99b4d1"
-        android:layout_marginRight="0.0dp" />
-    <Button
-        android:text="High Contrast"
-        android:id="@+id/HighContrast"
-        android:backgroundTint="#ff99b4d1" />
-</GridLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="300dp"
+	android:layout_height="match_parent"
+	android:minWidth="25px"
+	android:minHeight="25px">
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/ImageToEdit" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="300dp"
+		android:layout_height="match_parent"
+		android:minWidth="25px"
+		android:minHeight="25px">
+		<Button
+			android:text="Negate Red"
+			android:id="@+id/NegateRed"
+			android:backgroundTint="#ff99b4d1" />
+		<Button
+			android:text="Negate Blue"
+			android:id="@+id/NegateBlue"
+			android:backgroundTint="#ff99b4d1" />
+		<Button
+			android:text="Negate Green"
+			android:id="@+id/NegateGreen"
+			android:backgroundTint="#ff99b4d1" />
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="300dp"
+		android:layout_height="match_parent"
+		android:minWidth="25px"
+		android:minHeight="25px">
+		<Button
+			android:text="Remove Red"
+			android:id="@+id/RemoveRed"
+			android:backgroundTint="#ff99b4d1" />
+		<Button
+			android:text="Remove Blue"
+			android:id="@+id/RemoveBlue"
+			android:backgroundTint="#ff99b4d1" />
+		<Button
+			android:text="Remove Green"
+			android:id="@+id/RemoveGreen"
+			android:backgroundTint="#ff99b4d1" />
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="300dp"
+		android:layout_height="match_parent"
+		android:minWidth="25px"
+		android:minHeight="25px">
+		<Button
+			android:text="Grayscale"
+			android:id="@+id/Grayscale"
+			android:backgroundTint="#ff99b4d1" />
+		<Button
+			android:text="Add Noise"
+			android:id="@+id/AddNoise"
+			android:backgroundTint="#ff99b4d1"
+			android:layout_marginRight="0.0dp" />
+		<Button
+			android:text="High Contrast"
+			android:id="@+id/HighContrast"
+			android:backgroundTint="#ff99b4d1" />
+	</LinearLayout>
+</LinearLayout>

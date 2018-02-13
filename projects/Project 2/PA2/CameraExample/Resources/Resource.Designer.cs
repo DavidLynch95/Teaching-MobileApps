@@ -44,32 +44,35 @@ namespace CameraExample
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060009
-			public const int AddNoise = 2131099657;
-			
-			// aapt resource value: 0x7f060008
-			public const int Grayscale = 2131099656;
-			
 			// aapt resource value: 0x7f06000a
-			public const int HighContrast = 2131099658;
+			public const int AddNoise = 2131099658;
 			
-			// aapt resource value: 0x7f060003
-			public const int NegBlue = 2131099651;
+			// aapt resource value: 0x7f060009
+			public const int Grayscale = 2131099657;
 			
-			// aapt resource value: 0x7f060004
-			public const int NegGreen = 2131099652;
+			// aapt resource value: 0x7f06000b
+			public const int HighContrast = 2131099659;
 			
 			// aapt resource value: 0x7f060002
-			public const int NegRed = 2131099650;
+			public const int ImageToEdit = 2131099650;
 			
-			// aapt resource value: 0x7f060006
-			public const int RemoveBlue = 2131099654;
-			
-			// aapt resource value: 0x7f060007
-			public const int RemoveGreen = 2131099655;
+			// aapt resource value: 0x7f060004
+			public const int NegateBlue = 2131099652;
 			
 			// aapt resource value: 0x7f060005
-			public const int RemoveRed = 2131099653;
+			public const int NegateGreen = 2131099653;
+			
+			// aapt resource value: 0x7f060003
+			public const int NegateRed = 2131099651;
+			
+			// aapt resource value: 0x7f060007
+			public const int RemoveBlue = 2131099655;
+			
+			// aapt resource value: 0x7f060008
+			public const int RemoveGreen = 2131099656;
+			
+			// aapt resource value: 0x7f060006
+			public const int RemoveRed = 2131099654;
 			
 			// aapt resource value: 0x7f060000
 			public const int launchCameraButton = 2131099648;

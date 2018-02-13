@@ -5,6 +5,7 @@ using Android.Content;
 using System.Collections.Generic;
 using Android.Content.PM;
 using Android.Provider;
+using Android.Graphics;
 
 namespace CameraExample
 {
@@ -20,6 +21,9 @@ namespace CameraExample
         /// Used to track the directory that we'll be writing to between functions
         /// </summary>
         public static Java.IO.File _dir;
+
+        public static Bitmap bitmap;
+        public static Bitmap copyBitmap;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -87,7 +91,7 @@ namespace CameraExample
             base.OnActivityResult(requestCode, resultCode, data);
 
             //change view to the second layout where editing takes place
-            SetContentView(Resource.Layout.view2);
+            //SetContentView(Resource.Layout.view2);
 
             //Make image available in the gallery
             /*
@@ -101,15 +105,96 @@ namespace CameraExample
             // Loading the full sized image will consume too much memory
             // and cause the application to crash.
             ImageView imageView = FindViewById<ImageView>(Resource.Id.takenPictureImageView);
-            int height = Resources.DisplayMetrics.HeightPixels;
-            int width = imageView.Height;
+            int height = imageView.Height;
+            int width = imageView.Width;
+            bitmap = (Android.Graphics.Bitmap)data.Extras.Get("data");
+            copyBitmap = bitmap.Copy(Bitmap.Config.Argb8888, true);
 
-            //AC: workaround for not passing actual files
-            Android.Graphics.Bitmap bitmap = (Android.Graphics.Bitmap)data.Extras.Get("data");
-            Android.Graphics.Bitmap copyBitmap =
-                bitmap.Copy(Android.Graphics.Bitmap.Config.Argb8888, true);
+            ImageView editor = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+
+            SetContentView(Resource.Layout.view2);
+
+            if (copyBitmap != null)
+            {
+                imageView.SetImageBitmap(copyBitmap);
+            }
+
+            // Dispose of the Java side bitmap.
+            System.GC.Collect();
 
             FindViewById<Button>(Resource.Id.RemoveRed).Click += RemoveRedButton;
+            FindViewById<Button>(Resource.Id.RemoveGreen).Click += RemoveGreenButton;
+            FindViewById<Button>(Resource.Id.RemoveBlue).Click += RemoveBlueButton;
+            FindViewById<Button>(Resource.Id.NegateRed).Click += NegateRedButton;
+            FindViewById<Button>(Resource.Id.NegateGreen).Click += NegateGreenButton;
+            FindViewById<Button>(Resource.Id.NegateBlue).Click += NegateBlueButton;
+            FindViewById<Button>(Resource.Id.Grayscale).Click += GrayscaleButton;
+            FindViewById<Button>(Resource.Id.AddNoise).Click += AddNoiseButton;
+            FindViewById<Button>(Resource.Id.HighContrast).Click += HighContrastButton;
+        }
+
+        private void HighContrastButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void AddNoiseButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void GrayscaleButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void NegateBlueButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void NegateGreenButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void NegateRedButton(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void RemoveBlueButton(object sender, System.EventArgs e)
+        {
+            //this code removes all red from a picture
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    c.B = 0;
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+        }
+
+        private void RemoveGreenButton(object sender, System.EventArgs e)
+        {
+            //this code removes all red from a picture
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    c.G = 0;
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+        }
+
+        private void RemoveRedButton (object sender, System.EventArgs e)
+        {
             //this code removes all red from a picture
             for (int i = 0; i < bitmap.Width; i++)
             {
@@ -121,21 +206,6 @@ namespace CameraExample
                     copyBitmap.SetPixel(i, j, c);
                 }
             }
-            if (copyBitmap != null)
-            {
-                imageView.SetImageBitmap(copyBitmap);
-                imageView.Visibility = Android.Views.ViewStates.Visible;
-                bitmap = null;
-                copyBitmap = null;
-            }
-
-            // Dispose of the Java side bitmap.
-            System.GC.Collect();
-        }
-
-        private void RemoveRedButton (object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
