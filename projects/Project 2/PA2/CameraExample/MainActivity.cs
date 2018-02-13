@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Android.Content.PM;
 using Android.Provider;
 using Android.Graphics;
+using System;
 
 namespace CameraExample
 {
@@ -90,6 +91,8 @@ namespace CameraExample
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
+            SetContentView(Resource.Layout.view2);
+
             //change view to the second layout where editing takes place
             //SetContentView(Resource.Layout.view2);
 
@@ -104,15 +107,16 @@ namespace CameraExample
             // Display in ImageView. We will resize the bitmap to fit the display.
             // Loading the full sized image will consume too much memory
             // and cause the application to crash.
-            ImageView imageView = FindViewById<ImageView>(Resource.Id.takenPictureImageView);
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
             int height = imageView.Height;
             int width = imageView.Width;
             bitmap = (Android.Graphics.Bitmap)data.Extras.Get("data");
             copyBitmap = bitmap.Copy(Bitmap.Config.Argb8888, true);
+            Android.Graphics.Bitmap smallBitmap =
+            Android.Graphics.Bitmap.CreateScaledBitmap(bitmap, 1024, 768, true);
 
-            ImageView editor = FindViewById<ImageView>(Resource.Id.ImageToEdit);
 
-            SetContentView(Resource.Layout.view2);
+            ImageView editor = FindViewById<ImageView>(Resource.Id.ImageToEdit);            
 
             if (copyBitmap != null)
             {
@@ -135,37 +139,180 @@ namespace CameraExample
 
         private void HighContrastButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code turns a picture to high contrast
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    if (c.R > 127)
+                    {
+                        c.R = 255;
+                    }
+                    if (c.R < 128)
+                    {
+                        c.R = 0;
+                    }
+                    if (c.G > 127)
+                    {
+                        c.G = 255;
+                    }
+                    if (c.G < 128)
+                    {
+                        c.G = 0;
+                    }
+                    if (c.B > 127)
+                    {
+                        c.B = 255;
+                    }
+                    if (c.B < 128)
+                    {
+                        c.B = 0;
+                    }
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void AddNoiseButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code add random noise to a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            Random rando = new Random();
+
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    int random_value = rando.Next(-10, 11);
+                    int rValue = c.R;
+                    int gValue = c.G;
+                    int bValue = c.B;
+
+                    rValue += random_value;
+                    gValue += random_value;
+                    bValue += random_value;
+
+                    if (rValue > 255)
+                    {
+                        rValue = 255;
+                    }
+                    if (rValue < 0)
+                    {
+                        rValue = 0;
+                    }
+                    if (gValue > 255)
+                    {
+                        gValue = 255;
+                    }
+                    if (gValue < 0)
+                    {
+                        gValue = 0;
+                    }
+                    if (bValue > 255)
+                    {
+                        bValue = 255;
+                    }
+                    if (bValue < 0)
+                    {
+                        bValue = 0;
+                    }
+
+                    c.R = Convert.ToByte(rValue);
+                    c.G = Convert.ToByte(gValue);
+                    c.B = Convert.ToByte(bValue);
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void GrayscaleButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code turns a picture from its normal color to grayscale
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    int avgValue = (c.B + c.R + c.G) / 3;
+                    c.R = Convert.ToByte(avgValue);
+                    c.G = Convert.ToByte(avgValue);
+                    c.B = Convert.ToByte(avgValue);
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void NegateBlueButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code negates all blue in a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    int bValue = c.B;
+                    bValue = 255 - bValue;
+                    c.R = Convert.ToByte(bValue);
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void NegateGreenButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code negates all green in a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    int gValue = c.G;
+                    gValue = 255 - gValue;
+                    c.R = Convert.ToByte(gValue);
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void NegateRedButton(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //this code negates all red in a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    int p = bitmap.GetPixel(i, j);
+                    Android.Graphics.Color c = new Android.Graphics.Color(p);
+                    int rValue = c.R;
+                    rValue = 255 - rValue;
+                    c.R = Convert.ToByte(rValue);
+                    copyBitmap.SetPixel(i, j, c);
+                }
+            }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void RemoveBlueButton(object sender, System.EventArgs e)
         {
-            //this code removes all red from a picture
+            //this code removes all blue from a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
             for (int i = 0; i < bitmap.Width; i++)
             {
                 for (int j = 0; j < bitmap.Height; j++)
@@ -176,11 +323,13 @@ namespace CameraExample
                     copyBitmap.SetPixel(i, j, c);
                 }
             }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void RemoveGreenButton(object sender, System.EventArgs e)
         {
-            //this code removes all red from a picture
+            //this code removes all green from a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
             for (int i = 0; i < bitmap.Width; i++)
             {
                 for (int j = 0; j < bitmap.Height; j++)
@@ -191,11 +340,13 @@ namespace CameraExample
                     copyBitmap.SetPixel(i, j, c);
                 }
             }
+            imageView.SetImageBitmap(copyBitmap);
         }
 
         private void RemoveRedButton (object sender, System.EventArgs e)
         {
             //this code removes all red from a picture
+            ImageView imageView = FindViewById<ImageView>(Resource.Id.ImageToEdit);
             for (int i = 0; i < bitmap.Width; i++)
             {
                 for (int j = 0; j < bitmap.Height; j++)
@@ -206,6 +357,7 @@ namespace CameraExample
                     copyBitmap.SetPixel(i, j, c);
                 }
             }
+            imageView.SetImageBitmap(copyBitmap);
         }
     }
 }
