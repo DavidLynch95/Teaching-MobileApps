@@ -93,7 +93,7 @@ namespace GoogleApiExample
             // environment variable. We are specifying our own credentials via json file.
             var client = new Google.Apis.Vision.v1.VisionService(new Google.Apis.Services.BaseClientService.Initializer()
             {
-                ApplicationName = "subtle-isotope-190917",
+                ApplicationName = "mobile-apps-pa3",
                 HttpClientInitializer = cred
             });
 
@@ -112,6 +112,11 @@ namespace GoogleApiExample
             //send request.  Note that I'm calling execute() here, but you might want to use
             //ExecuteAsync instead
             var apiResult = client.Images.Annotate(batch).Execute();
+            List<string> tags = new List<string>();
+            foreach(var item in apiResult.Responses[0].LabelAnnotations)
+                {
+                tags.Add(item.Description);
+            }
 
             if (bitmap != null)
             {
