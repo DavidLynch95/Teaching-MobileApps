@@ -1,11 +1,3 @@
 # Post Mortem
-Use this page to discuss what you learned from completing this assignment.  It should be completed **after** you finish coding your assignment. Your post mortem must be at least 500 words long.  Note that the focus of the paper should be on your reflection, not on structure (e.g. introductory paragraph, conclusion, etc.).  The essay is graded on content (i.e. it shows deep though) rather than syntax (e.g. spelling) and structure.  
-
-Below are some prompts that can be used to get you thinking.  Feel free to use these or to make up your own.
-* Describe a particular struggle that you overcame when working on this programming assignment.
-* Conversely, describe an issue with your assignment that you were unable to resolve.
-* Provide advice to a future student on how he or she might succeed on this assignment.
-* Describe the most fun aspect of the assignment.
-* Describe the most challenging aspect of the assignment.
-* Describe the most difficult aspect of the assignment to understand.
-* Provide any suggestions for improving the assignment in the future.
+The Photo Editor application was very interesting to work on. I thought it was going to be exceedingly easy to just recycle the pixel manipulation code we came up with in Data Structures last semester, slap it into our MainActivity and call it an app. However, I was very wrong. Due to the change in language, from C++ to C#, I found myself stumped on a few of the pixel manipulation “translations” to C#. It started when I tried to translate the code for negating the color values in a pixel. Because c.R(or c.G or c.B) were of data type “byte” I could not just use them as they were for color negation, requiring using those values for an operation. Instead, I had to store those values into other integer variables, use those values for the equations, and then set the original color value to the result of the equation converted to a byte. Once I had that function available to me, the rest of the functions fell into place and I was able to complete the buttons.
+The part that gave me the most trouble while working on this application was getting all of my editor buttons to show up on the second layout. Once I added my image view, I could only see two and a half of my nine total buttons. After tweaking the size of the buttons and changing from a grid layout to a linear layout, the half button turned into a full button but then I could not see my image view anymore. At that point, I added linear layouts nested into my overall linear layout and was able to see all of my buttons and my image view when that was done.
