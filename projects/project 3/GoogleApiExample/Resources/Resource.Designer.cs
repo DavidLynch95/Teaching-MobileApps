@@ -45,10 +45,25 @@ namespace GoogleApiExample
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int launchCameraButton = 2131034112;
+			public const int ImageToGuess = 2131034112;
 			
 			// aapt resource value: 0x7f050001
-			public const int takenPictureImageView = 2131034113;
+			public const int IsItATextView = 2131034113;
+			
+			// aapt resource value: 0x7f050003
+			public const int NoButton = 2131034115;
+			
+			// aapt resource value: 0x7f050002
+			public const int YesButton = 2131034114;
+			
+			// aapt resource value: 0x7f050004
+			public const int launchCameraButton = 2131034116;
+			
+			// aapt resource value: 0x7f050005
+			public const int takenPictureImageView = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int textView1 = 2131034118;
 			
 			static Id()
 			{
@@ -64,7 +79,13 @@ namespace GoogleApiExample
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int IsItA = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Success = 2130903042;
 			
 			static Layout()
 			{

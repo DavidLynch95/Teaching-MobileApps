@@ -117,6 +117,17 @@ namespace GoogleApiExample
                 {
                 tags.Add(item.Description);
             }
+            SetContentView(Resource.Layout.IsItA);
+
+            ImageView apiPicture = FindViewById<ImageView>(Resource.Id.ImageToGuess);
+            apiPicture.SetImageBitmap(bitmap);
+
+            string question = string.Format("Is it (a(n)) {0}?", tags[0]);
+            TextView output = FindViewById<TextView>(Resource.Id.IsItATextView);
+            output.Text = question;
+
+            FindViewById<Button>(Resource.Id.YesButton).Click += YesButtonClick;
+            FindViewById<Button>(Resource.Id.NoButton).Click += NoButtonClick;
 
             if (bitmap != null)
             {
@@ -127,6 +138,16 @@ namespace GoogleApiExample
 
             // Dispose of the Java side bitmap.
             System.GC.Collect();
+        }
+
+        private void NoButtonClick(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void YesButtonClick(object sender, System.EventArgs e)
+        {
+            SetContentView(Resource.Layout.Success);
         }
     }
 }
