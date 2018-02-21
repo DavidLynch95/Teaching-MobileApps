@@ -11,6 +11,10 @@ namespace GoogleApiExample
     [Activity(Label = "GoogleApiExample", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
+        List<string> tags = new List<string>();
+        private string submittedAnswer;
+        private Google.Apis.Vision.v1.Data.BatchAnnotateImagesResponse apiResult;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -111,8 +115,8 @@ namespace GoogleApiExample
 
             //send request.  Note that I'm calling execute() here, but you might want to use
             //ExecuteAsync instead
-            var apiResult = client.Images.Annotate(batch).Execute();
-            List<string> tags = new List<string>();
+            apiResult = client.Images.Annotate(batch).Execute();
+            tags = new List<string>();
             foreach(var item in apiResult.Responses[0].LabelAnnotations)
                 {
                 tags.Add(item.Description);
@@ -128,6 +132,9 @@ namespace GoogleApiExample
 
             FindViewById<Button>(Resource.Id.YesButton).Click += YesButtonClick;
             FindViewById<Button>(Resource.Id.NoButton).Click += NoButtonClick;
+            FindViewById<Button>(Resource.Id.SubmitButton).Click += SubmitButtonClick;
+
+            
 
             if (bitmap != null)
             {
@@ -139,10 +146,33 @@ namespace GoogleApiExample
             // Dispose of the Java side bitmap.
             System.GC.Collect();
         }
+        
+        private void SubmitButtonClick(object sender, System.EventArgs e)
+        {
+            EditText TextboxSubmit = FindViewById<EditText>(Resource.Id.TextboxSubmit);
+            submittedAnswer = TextboxSubmit.Text;
+
+            foreach(var annotation in apiResult.Responses[0].LabelAnnotations)
+            {
+                if(submittedAnswer == annotation.Description)
+                {
+                    SetContentView(Resource.Layout.PercentChance);
+                    string question = string.Format("There was a {0}% chance that it was "+submittedAnswer, annotation.Confidence);
+                    TextView output = FindViewById<TextView>(Resource.Id.PercentText);
+                    output.Text = question;
+                }
+                else
+                {
+                    SetContentView(Resource.Layout.NoIdea);
+                    TextView output = FindViewById<TextView>(Resource.Id.NoIdeaText);
+                    output.Text = "Wow, I had no idea that the picture was a " + submittedAnswer;
+                }
+            }
+        }
 
         private void NoButtonClick(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            SetContentView(Resource.Layout.Darn);
         }
 
         private void YesButtonClick(object sender, System.EventArgs e)
