@@ -132,10 +132,7 @@ namespace GoogleApiExample
 
             FindViewById<Button>(Resource.Id.YesButton).Click += YesButtonClick;
             FindViewById<Button>(Resource.Id.NoButton).Click += NoButtonClick;
-            FindViewById<Button>(Resource.Id.SubmitButton).Click += SubmitButtonClick;
-
             
-
             if (bitmap != null)
             {
                 imageView.SetImageBitmap(bitmap);
@@ -151,21 +148,23 @@ namespace GoogleApiExample
         {
             EditText TextboxSubmit = FindViewById<EditText>(Resource.Id.TextboxSubmit);
             submittedAnswer = TextboxSubmit.Text;
-
-            foreach(var annotation in apiResult.Responses[0].LabelAnnotations)
+            foreach (var annotation in apiResult.Responses[0].LabelAnnotations)
             {
-                if(submittedAnswer == annotation.Description)
+                if (submittedAnswer == annotation.Description)
                 {
                     SetContentView(Resource.Layout.PercentChance);
-                    string question = string.Format("There was a {0}% chance that it was "+submittedAnswer, annotation.Confidence);
+                    float percentage = (float)annotation.Score * 100;
+                    string question = "There was a " + percentage + "% chance that it was (a(n)) ";
+                    question += submittedAnswer;
                     TextView output = FindViewById<TextView>(Resource.Id.PercentText);
                     output.Text = question;
+                break;
                 }
                 else
                 {
                     SetContentView(Resource.Layout.NoIdea);
                     TextView output = FindViewById<TextView>(Resource.Id.NoIdeaText);
-                    output.Text = "Wow, I had no idea that the picture was a " + submittedAnswer;
+                    output.Text = "Wow, I had no idea that the picture was (a(n)) " + submittedAnswer;
                 }
             }
         }
@@ -173,6 +172,7 @@ namespace GoogleApiExample
         private void NoButtonClick(object sender, System.EventArgs e)
         {
             SetContentView(Resource.Layout.Darn);
+            FindViewById<Button>(Resource.Id.SubmitButton).Click += SubmitButtonClick;
         }
 
         private void YesButtonClick(object sender, System.EventArgs e)
