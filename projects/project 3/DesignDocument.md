@@ -8,5 +8,5 @@ This is where you specify all of the system's requirements.  This section should
 This is where you explain how to use your application
 
 <p align="center">
-  <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205704651014149/Screenshot_20180227-162310.png" width="350"             height="450"/>
+  <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205704651014149/Screenshot_20180227-162310.png" width="500"             height="700"/>
 </p>
