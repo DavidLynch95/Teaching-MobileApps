@@ -48,10 +48,3 @@ If the application guesses right on the first try, and the user selects "Yes", t
 <p align="center">
   <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205716323500032/Screenshot_20180227-162540.png" width="500"             height="700"/>
 </p>
-
-
-
-## Usage
-This is where you explain how to use your application
-
-
