@@ -29,13 +29,9 @@ Water bottle correction
   <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205714339856414/Screenshot_20180227-162425.png" width="500"             height="700"/>
 </p>
 
-<p align="center">
-  <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205713886740481/Screenshot_20180227-162447.png" width="500"             height="700"/>
-</p>
-
 Post-correction
 <p align="center">
-  <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205704651014149/Screenshot_20180227-162310.png" width="500"             height="700"/>
+  <img src="https://cdn.discordapp.com/attachments/250193100687802368/418205713886740481/Screenshot_20180227-162447.png" width="500"             height="700"/>
 </p>
 
 Duck picture
