@@ -7,3 +7,4 @@ This is where you specify all of the system's requirements.  This section should
 ## Usage
 This is where you explain how to use your application
 
+![screenshot](D:\home\David\Documents\School\github\Teaching-MobileApps\projects\project 3\Screenshot_20180227-162310.png "screenshot")
