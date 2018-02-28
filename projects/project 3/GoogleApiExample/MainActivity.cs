@@ -29,6 +29,7 @@ namespace GoogleApiExample
             }
         }
 
+
         /// <summary>
         /// Apparently, some android devices do not have a camera.  To guard against this,
         /// we need to make sure that we can take pictures before we actually try to take a picture.
