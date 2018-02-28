@@ -1,7 +1,7 @@
 # APPLICATION NAME
 This application is a form of the "Hot Dog or Not Hot Dog" Google API Photo Recognition Application. It allows the user to take a photo and then uses Google API technology to guess what that photo is. I wrote this application for the sake of the assignment but plan to add to it in the future to make it more than what was initially required.
 
-## System Design 
+## System Design and Usage
 This is where you specify all of the system's requirements.  This section should accurately portray the complete operation of your application.  Provide scenarios, use cases, system requirements, and diagrams/screenshots of the system.
 This application was designed targetting Android version 7.1 and higher, but will run on most devices, provided they have a camera.
 The most common use of an application like this is probably just to see what things it can and cannot guess when you take the picture, so it is currently more of a small "game" than anything potentially useful.
