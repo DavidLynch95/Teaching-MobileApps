@@ -56,14 +56,17 @@ namespace GoogleApiExample
 			// aapt resource value: 0x7f050009
 			public const int NoIdeaText = 2131034121;
 			
-			// aapt resource value: 0x7f05000a
-			public const int PercentText = 2131034122;
+			// aapt resource value: 0x7f05000b
+			public const int PercentText = 2131034123;
 			
 			// aapt resource value: 0x7f050002
 			public const int SubmitButton = 2131034114;
 			
 			// aapt resource value: 0x7f050001
 			public const int TextboxSubmit = 2131034113;
+			
+			// aapt resource value: 0x7f05000a
+			public const int TryAgain = 2131034122;
 			
 			// aapt resource value: 0x7f050005
 			public const int YesButton = 2131034117;

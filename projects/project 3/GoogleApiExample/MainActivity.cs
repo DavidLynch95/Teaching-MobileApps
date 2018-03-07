@@ -165,6 +165,7 @@ namespace GoogleApiExample
                     SetContentView(Resource.Layout.NoIdea);
                     TextView output = FindViewById<TextView>(Resource.Id.NoIdeaText);
                     output.Text = "Wow, I had no idea that the picture was (a(n)) " + submittedAnswer;
+                    FindViewById<Button>(Resource.Id.TryAgain).Click += TryAgainButtonClick;
                 }
             }
         }
@@ -178,7 +179,14 @@ namespace GoogleApiExample
         private void YesButtonClick(object sender, System.EventArgs e)
         {
             SetContentView(Resource.Layout.Success);
+            FindViewById<Button>(Resource.Id.TryAgain).Click += TryAgainButtonClick;
         }
+
+        private void TryAgainButtonClick(object sender, System.EventArgs e)
+        {
+            SetContentView(Resource.Layout.Main);
+        }
+
     }
 }
 
