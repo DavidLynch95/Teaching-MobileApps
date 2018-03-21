@@ -224,6 +224,7 @@ namespace GoogleApiExample
         private void TryAgainButtonClick(object sender, System.EventArgs e)
         {
             SetContentView(Resource.Layout.Main);
+            FindViewById<Button>(Resource.Id.launchCameraButton).Click += TakePicture;
         }
 
     }
